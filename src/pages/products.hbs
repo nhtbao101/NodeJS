@@ -1,0 +1,98 @@
+<div class='container'>
+  <a
+    href='/products/create'
+    class='row btn btn-primary mt-4'
+    style='width:25%'
+  >Create product</a>
+  <div class='row'>
+    {{#each cakes}}
+      <div class='col-md-4 my-4'>
+        <div class='card' style='height: 100%'>
+          <a href='/products/{{this.slug}}'>
+            <img src={{this.image}} class='card-img-top' alt='image' />
+          </a>
+          <div class='card-body'>
+            <a href='/products/{{this.slug}}'><h5
+                class='card-title'
+              >{{this.name}}</h5></a>
+            <p class='card-text'>{{this.description}}</p>
+            <div class='d-flex justify-content-between'>
+              <a
+                href='/products/{{this._id}}/edit'
+                class='btn btn-primary'
+              >Update</a>
+              <button
+                type='button'
+                class='btn btn-primary'
+                data-bs-toggle='modal'
+                data-bs-target='#modal'
+                data-delete="{{this._id}}"
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+</div>
+
+<form id='delete-form' action='' method="POST"></form>
+
+<!-- Modal -->
+<div
+  class='modal fade'
+  id='modal'
+  tabindex='-1'
+  aria-labelledby='exampleModalLabel'
+  aria-hidden='true'
+>
+  <div class='modal-dialog'>
+    <div class='modal-content'>
+      <div class='modal-header'>
+        <h1 class='modal-title fs-5' id='exampleModalLabel'>Delete this cake?</h1>
+        <button
+          type='button'
+          class='btn-close'
+          data-bs-dismiss='modal'
+          aria-label='Close'
+        ></button>
+      </div>
+      <div class='modal-body'>
+        Do you really want to delete this cake?
+      </div>
+      <div class='modal-footer'>
+        <button
+          type='button'
+          class='btn btn-secondary'
+          data-bs-dismiss='modal'
+        >Cancel</button>
+        <button
+          type='button'
+          id='delete-submit'
+          class='btn btn-primary'
+        >OK</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  window.addEventListener('load', e => {
+    const myModal = document.getElementById('modal');
+    myModal.addEventListener('shown.bs.modal', (e) => {
+      const productId= e.relatedTarget.getAttribute('data-delete');
+      const formId =document.getElementById('delete-form');
+      const deleteSubmitBtn = document.getElementById('delete-submit');
+      console.log('deleteSubmitBtn', deleteSubmitBtn)
+      const deleteSubmit = (e) => {
+        console.log("ASDASD")
+        formId.action = `/products/${productId}?_method=DELETE`;
+        formId.submit();
+      } 
+      deleteSubmitBtn.addEventListener('click', deleteSubmit)
+    })
+  })
+  //formID.submit(); });
+</script>

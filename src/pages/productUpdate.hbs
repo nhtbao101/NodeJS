@@ -1,0 +1,37 @@
+<form
+  action='/products/{{cake._id}}?_method=PUT'
+  method='POST'
+  enctype='application/json'
+>
+  <div class='mb-3'>
+    <label for='name' class='form-label'>Name</label>
+    <input
+      type='text'
+      name='name'
+      class='form-control'
+      id='name'
+      value='{{cake.name}}'
+    />
+  </div>
+  <div class='mb-3'>
+    <label for='img' class='form-label'>Image UR</label>
+    <input
+      type='text'
+      name='image'
+      class='form-control'
+      id='img'
+      value='{{cake.image}}'
+    />
+  </div>
+  <div class='mb-3'>
+    <label for='description' class='form-label'>Description</label>
+    <input
+      type='text'
+      name='description'
+      class='form-control'
+      id='description'
+      value='{{cake.description}}'
+    />
+  </div>
+  <button type='submit' class='btn btn-primary'>Submit</button>
+</form>

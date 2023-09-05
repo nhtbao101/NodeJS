@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "nodemon src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -17,6 +18,14 @@
   },
   "homepage": "https://github.com/nhtbao101/NodeJS#readme",
   "dependencies": {
-    "express": "^4.18.2"
+    "bootstrap": "^5.3.1",
+    "express": "^4.18.2",
+    "express-handlebars": "^7.1.2",
+    "method-override": "^3.0.0",
+    "mongoose": "^7.4.5",
+    "mongoose-slug-updater": "^3.3.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
   }
 }
